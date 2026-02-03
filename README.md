@@ -1,55 +1,12 @@
-<h1 align="center">Forced Alignment with Hugging Face CTC Models</h1>
-
-[![FreePalestine.Dev](https://freepalestine.dev/header/1)](https://freepalestine.dev)
-
-
-<p align="center">
-  <a href="https://github.com/MahmoudAshraf97/ctc-forced-aligner/actions/workflows/test_build.yml">
-    <img src="https://github.com/MahmoudAshraf97/ctc-forced-aligner/actions/workflows/CI.yml/badge.svg"
-         alt="Build Status">
-  </a>
-  <a href="https://github.com/MahmoudAshraf97/ctc-forced-aligner/stargazers">
-    <img src="https://img.shields.io/github/stars/MahmoudAshraf97/ctc-forced-aligner.svg?colorA=orange&colorB=orange&logo=github"
-         alt="GitHub stars">
-  </a>
-  <a href="https://github.com/MahmoudAshraf97/ctc-forced-aligner/issues">
-        <img src="https://img.shields.io/github/issues/MahmoudAshraf97/ctc-forced-aligner.svg"
-             alt="GitHub issues">
-  </a>
-  <a href="https://github.com/MahmoudAshraf97/ctc-forced-aligner/blob/main/LICENSE">
-        <img src="https://img.shields.io/github/license/MahmoudAshraf97/ctc-forced-aligner.svg"
-             alt="GitHub license">
-  </a>
-  <a href="https://twitter.com/intent/tweet?text=&url=https%3A%2F%2Fgithub.com%2FMahmoudAshraf97%2Fctc-forced-aligner">
-  <img src="https://img.shields.io/twitter/url/https/github.com/MahmoudAshraf97/ctc-forced-aligner.svg?style=social" alt="Twitter">
-  </a> 
-  </a>
- 
-</p>
-
-<img src="https://github.blog/wp-content/uploads/2020/09/github-stars-logo_Color.png" alt="drawing" width="25"/> **Please, star the project on github (see top-right corner) if you appreciate my contribution to the community!**
-
-This Python package provides an efficient way to perform forced alignment between text and audio using Hugging Face's pretrained models. It leverages the power of Wav2Vec2, HuBERT, and MMS models for accurate alignment, making it a powerful tool for creating speech corpuses.
-
-### Features
-- **Atleast 5X less memory usage:** Improved implementation to use much less memory than TorchAudio forced alignment API.
-- **Wide range of language support:** Works with multiple languages including English, Arabic, Russian, German, and 1126 more languages.
-- **Flexibility in alignment granularity:** Choose between aligning on a sentence, word, or character level.
-- **Customizable alignment parameters:** Control the frequency of `<star>` token insertion, merge threshold for segment merging, and more.
-- **Integration with Hugging Face's models:** Leverage the power of pretrained Wav2Vec2, HuBERT, and MMS models for accurate alignment.
-- **GPU acceleration:** Utilize your GPU for faster inference.
-- **Output in JSON format:** Provides clear and structured alignment results for easy analysis and integration.
-
-
 ### Installation
 
 #### Latest version from GitHub
 ```bash
-pip install git+https://github.com/MahmoudAshraf97/ctc-forced-aligner.git
+pip install git+https://github.com/pratheek-j/ctc-forced-aligner.git
 ```
 #### Installing locally from source
 ```bash
-git clone https://github.com/MahmoudAshraf97/ctc-forced-aligner.git
+git clone https://github.com/pratheek-j/ctc-forced-aligner.git
 cd ctc-forced-aligner
 pip install -e .[dev]
 ```
