@@ -1,7 +1,7 @@
 uroman
-nltk
-torch
-torchaudio
+nltk==3.9.2
+torch==2.8.0
+torchaudio==2.8.0
 torchcodec
-transformers>=4.34
+transformers==4.57.6
 Unidecode
