@@ -1,7 +1,7 @@
 import math
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 
 import numpy as np
 import torch
@@ -99,14 +99,33 @@ def get_spans(tokens, segments, blank):
     return spans
 
 
-def load_audio(audio_file: str, dtype: torch.dtype, device: str):
-    waveform, audio_sf = torchaudio.load(audio_file)  # waveform: channels X T
-    waveform = torch.mean(waveform, dim=0)
-
-    if audio_sf != SAMPLING_FREQ:
-        waveform = torchaudio.functional.resample(
-            waveform, orig_freq=audio_sf, new_freq=SAMPLING_FREQ
-        )
+def load_audio(
+    audio_input: Union[str, Tuple[np.ndarray, int]],
+    dtype: torch.dtype,
+    device: str,
+):
+    """
+    Load audio as a 1D tensor on the given device/dtype.
+    Accepts either a file path (str) or (waveform_np, sample_rate).
+    """
+    if isinstance(audio_input, str):
+        waveform, audio_sf = torchaudio.load(audio_input)  # waveform: channels X T
+        waveform = torch.mean(waveform, dim=0)
+        if audio_sf != SAMPLING_FREQ:
+            waveform = torchaudio.functional.resample(
+                waveform, orig_freq=audio_sf, new_freq=SAMPLING_FREQ
+            )
+    else:
+        waveform_np, sample_rate = audio_input
+        waveform_np = np.asarray(waveform_np, dtype=np.float32)
+        if waveform_np.ndim > 1:
+            waveform_np = np.mean(waveform_np, axis=0)
+        waveform_np = waveform_np.reshape(-1)
+        waveform = torch.from_numpy(waveform_np.copy())
+        if sample_rate != SAMPLING_FREQ:
+            waveform = torchaudio.functional.resample(
+                waveform, orig_freq=sample_rate, new_freq=SAMPLING_FREQ
+            )
     waveform = waveform.to(dtype).to(device)
     return waveform
 
